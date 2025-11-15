@@ -1,0 +1,178 @@
+{
+    "info": {
+        "name": "Fees Data CSV Upload API",
+        "_postman_id": "fees-data-api-collection",
+        "description": "API endpoints for uploading and managing large CSV files (250MB) for fees data",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Upload CSV File",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "csv_file",
+                            "type": "file",
+                            "src": "/path/to/your/fees_data.csv",
+                            "description": "CSV file containing fees data (max 300MB)"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/fees-data/upload",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "fees-data",
+                        "upload"
+                    ]
+                },
+                "description": "Upload a large CSV file (up to 300MB) with fees data. The file will be processed using streaming for memory efficiency."
+            },
+            "response": []
+        },
+        {
+            "name": "Get All Records (Paginated)",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/fees-data?page=1&limit=20",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "fees-data"
+                    ],
+                    "query": [
+                        {
+                            "key": "page",
+                            "value": "1",
+                            "description": "Page number (default: 1)"
+                        },
+                        {
+                            "key": "limit",
+                            "value": "20",
+                            "description": "Records per page (default: 20)"
+                        }
+                    ]
+                },
+                "description": "Retrieve paginated fees data records."
+            },
+            "response": []
+        },
+        {
+            "name": "Get Statistics",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/fees-data/stats",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "fees-data",
+                        "stats"
+                    ]
+                },
+                "description": "Get overall statistics including total records, total paid amount, and total due amount."
+            },
+            "response": []
+        },
+        {
+            "name": "Get Single Record",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/fees-data/:id",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "fees-data",
+                        ":id"
+                    ],
+                    "variable": [
+                        {
+                            "key": "id",
+                            "value": "1",
+                            "description": "Record ID"
+                        }
+                    ]
+                },
+                "description": "Retrieve a specific fees data record by ID."
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Record",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/fees-data/:id",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "fees-data",
+                        ":id"
+                    ],
+                    "variable": [
+                        {
+                            "key": "id",
+                            "value": "1",
+                            "description": "Record ID to delete"
+                        }
+                    ]
+                },
+                "description": "Delete a specific fees data record."
+            },
+            "response": []
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:3333",
+            "type": "string"
+        }
+    ]
+}

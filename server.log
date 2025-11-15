@@ -1,0 +1,24 @@
+c[ info ] starting HTTP server...
+[20:55:58.983] INFO (91539): started HTTP server on localhost:3333
+╭─────────────────────────────────────────────────╮
+│                                                 │
+│    Server address: http://localhost:3333        │
+│    Watch Mode: HMR                              │
+│    Ready in: 436 ms                             │
+│                                                 │
+╰─────────────────────────────────────────────────╯
+[20:56:27.150] WARN (91539): Invalid or expired CSRF token
+    request_id: "gh2ghxbj9y1mzxom08arfv2q"
+    x-request-id: "gh2ghxbj9y1mzxom08arfv2q"
+cfull-reload start/routes.ts
+9:04:29 PM [vite] (client) Re-optimizing dependencies because vite config has changed
+╭─────────────────────────────────────────────────╮
+│                                                 │
+│    Server address: http://localhost:3333        │
+│    Watch Mode: HMR                              │
+│    Ready in: 519 ms                             │
+│                                                 │
+╰─────────────────────────────────────────────────╯
+[21:04:29.116] INFO (94736): started HTTP server on localhost:3333
+9:08:54 PM [vite] changed tsconfig file detected: /private/var/www/adonis-app/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+9:09:19 PM [vite] changed tsconfig file detected: /private/var/www/adonis-app/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
