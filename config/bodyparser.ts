@@ -47,7 +47,7 @@ const bodyParserConfig = defineConfig({
      * Maximum limit of data to parse including all files
      * and fields
      */
-    limit: '350mb', // Increased to handle large CSV files (250MB+)
+    limit: '512mb', // Increased to handle large CSV files (250MB+)
     types: ['multipart/form-data'],
   },
 })

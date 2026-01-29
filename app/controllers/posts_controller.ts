@@ -1,7 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Post from '#models/post'
 import { createPostValidator, updatePostValidator } from '#validators/post_validator'
-import { prettyPrintError } from '@adonisjs/core';
+// import { prettyPrintError } from '@adonisjs/core';
 
 export default class PostsController {
     /**
@@ -67,6 +67,7 @@ export default class PostsController {
             })
         }
     }
+
 
     /**
      * Show individual post

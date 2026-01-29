@@ -6,14 +6,17 @@ import { parse } from 'csv-parse'
 import db from '@adonisjs/lucid/services/db'
 import app from '@adonisjs/core/services/app'
 import { unlink } from 'node:fs/promises'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat.js'
+dayjs.extend(customParseFormat)
 
 export default class FeesDataController {
+
     /**
      * Upload and process large CSV file with streaming
      */
     async upload({ request, response }: HttpContext) {
         let filePath: string | null = null
-
         try {
             // Validate the uploaded file
             const { csv_file } = await request.validateUsing(feesDataUploadValidator)
@@ -63,9 +66,12 @@ export default class FeesDataController {
                         parser.pause()
 
                         // Map CSV columns to database columns (use snake_case for raw DB insert)
+
+                        // date is in DD-MM-YY (19/11/20)format in the CSV it should be stored as YYYY-MM-DD
+
                         const feesData = {
                             sr: row.sr ? parseInt(row.sr) : null,
-                            date: row.date || null,
+                            date: this.parseDate(row.date),
                             academic_year: row.academic_year || null,
                             session: row.session || null,
                             alloted_category: row.alloted_category || null,
@@ -124,7 +130,7 @@ export default class FeesDataController {
                     // Insert any remaining rows in the batch
                     if (batch.length > 0) {
                         try {
-                            await db.table('fees_data').multiInsert(batch)
+                            await FeesDatum.createMany(batch);
                             processedRows += batch.length
                         } catch (error) {
                             console.error('Final batch insert error:', error)
@@ -180,6 +186,23 @@ export default class FeesDataController {
                 error: error.message,
             })
         }
+    }
+
+    private parseDate(value: any): string | null {
+        if (!value) return null
+
+        const date = dayjs(
+            value,
+            [
+                'DD/MM/YY',
+                'DD/MM/YYYY',
+                'DD-MM-YY',
+                'DD-MM-YYYY',
+                'YYYY-MM-DD',
+            ],
+            true
+        )
+        return date.isValid() ? date.format('YYYY-MM-DD') : null
     }
 
     /**

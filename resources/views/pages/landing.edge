@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Landing — My App</title>
+
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link
+      href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: [ "Instrument Sans", "sans-serif" ] },
+            colors: { primary: { DEFAULT: "#5A45FF" } }
+          }
+        }
+      };
+    </script>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('dumper')
+  </head>
+
+  <body class="min-h-screen bg-gradient-to-b from-white to-sand-2 font-sans">
+    <div class="min-h-screen flex items-center justify-center px-6">
+      <main class="max-w-3xl text-center">
+        <h1 class="text-4xl sm:text-5xl font-bold text-sand-12 mb-4">Welcome to My App</h1>
+        <p class="text-lg text-sand-11 mb-8">A simple landing page built with Adonis and Tailwind.</p>
+
+        <div class="flex gap-4 justify-center">
+          <a href="/api/posts" class="px-6 py-3 bg-primary text-white rounded-lg shadow hover:bg-primary/90">Get Started</a>
+          <a href="/docs" class="px-6 py-3 border border-sand-6 rounded-lg text-sand-12 hover:bg-sand-2">Documentation</a>
+        </div>
+
+        <section class="mt-12 text-left bg-white/60 p-6 rounded-lg shadow-sm">
+          <h2 class="font-semibold text-lg mb-2">Why use this app?</h2>
+          <ul class="list-disc pl-5 text-sand-11 space-y-1">
+            <li>Simple scaffolding to get started quickly</li>
+            <li>API endpoints for posts and fees data</li>
+            <li>Uses Edge templates and Vite-powered assets</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
+
+</html>
